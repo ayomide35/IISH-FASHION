@@ -316,9 +316,9 @@ async function seed() {
            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           [
             product.name, product.slug, product.description, product.shortDescription,
-            product.price, product.compareAtPrice, product.sku, product.categoryId,
-            product.productType, product.gender, product.material, product.careInstructions,
-            product.weightKg, product.isFeatured, product.isNewArrival, product.tags, true
+            product.price, product.compareAtPrice ?? null, product.sku, product.categoryId,
+            product.productType, product.gender ?? 'unisex', product.material ?? null, product.careInstructions ?? null,
+            product.weightKg ?? null, product.isFeatured ?? false, product.isNewArrival ?? false, product.tags ?? null, true
           ]
         );
 

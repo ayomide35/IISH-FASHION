@@ -11,16 +11,17 @@ const output = [
 const db = require('./src/config/database');
 
 db.executeQuery('SELECT DATABASE() as db_name')
-  .then(results => {
+  .then((results) => {
     output.push('Current database: ' + results[0].db_name);
+
     return db.executeQuery('SELECT COUNT(*) as total FROM products WHERE is_active = 1');
   })
-  .then(results => {
-    output.push('Products count: ' + results[0].total);
+  .then((products) => {
+    output.push('Products count: ' + products[0].total);
     fs.writeFileSync('test-output.txt', output.join('\n'));
     process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
     output.push('Error: ' + err.message);
     fs.writeFileSync('test-output.txt', output.join('\n'));
     process.exit(1);
