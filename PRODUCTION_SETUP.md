@@ -1,37 +1,19 @@
-# 🚀 IISH Fashion - Production Setup Guide
+# 🚀 IISH Fashion - Production Setup Guide (FREE)
 
-This guide will help you deploy your e-commerce website live. Follow each step carefully.
-
----
-
-## Step 1: Get a Domain Name (Website Address)
-
-1. Go to a domain registrar like:
-   - **Namecheap** (namecheap.com)
-   - **GoDaddy** (godaddy.com)
-   - **Cloudflare** (cloudflare.com)
-
-2. Search for a name you want (e.g., `iishfashion.com`)
-3. Buy it (usually costs $10-15 per year)
+This guide will help you deploy your e-commerce website live for FREE.
 
 ---
 
-## Step 2: Get Hosting (Where Your Website Lives)
+## Step 1: Get Hosting (Where Your Website Lives) - **FREE**
 
-For this project, you have two options:
+You can use free subdomains without buying a domain:
 
-### Option A: Vercel + Render (Recommended for Beginners) - **FREE**
-- **Frontend (app)**: Deploy on [Vercel](https://vercel.com) - Free
-- **Backend (api)**: Deploy on [Render](https://render.com) - Free tier available
-- **Database**: Use [Aiven](https://aiven.io) or [PlanetScale](https://planetscale.com) - Free tier
-
-### Option B: DigitalOcean or AWS (More Control) - **Paid**
-- More expensive but gives you full control
-- Recommended after you gain experience
+- **Frontend**: `your-app.vercel.app` (free)
+- **Backend**: `your-app.onrender.com` (free)
 
 ---
 
-## Step 3: Set Up Production Database
+## Step 2: Set Up Production Database
 
 ### Option A: Aiven (Free MySQL)
 1. Go to [aiven.io](https://aiven.io)
@@ -52,7 +34,7 @@ For this project, you have two options:
 
 ---
 
-## Step 4: Configure Environment Variables
+## Step 3: Configure Environment Variables
 
 Create a `.env` file in the `backend` folder with these values:
 
@@ -81,7 +63,7 @@ FRONTEND_URL=https://your-domain.com
 
 ---
 
-## Step 5: Get Paystack Account (For Payments)
+## Step 4: Get Paystack Account (For Payments)
 
 1. Go to [paystack.com](https://paystack.com)
 2. Sign up as a merchant
@@ -91,7 +73,7 @@ FRONTEND_URL=https://your-domain.com
 
 ---
 
-## Step 6: Deploy Backend
+## Step 5: Deploy Backend
 
 ### Using Render (Free):
 1. Go to [render.com](https://render.com)
@@ -106,7 +88,7 @@ FRONTEND_URL=https://your-domain.com
 
 ---
 
-## Step 7: Deploy Frontend
+## Step 6: Deploy Frontend
 
 ### Using Vercel (Free):
 1. Go to [vercel.com](https://vercel.com)
@@ -119,25 +101,21 @@ FRONTEND_URL=https://your-domain.com
 
 ---
 
-## Step 8: Update API URL in Frontend
+## Step 7: Update API URL in Frontend
 
-After deploying backend, update the API base URL in your frontend code:
+Your frontend is already configured to use environment variables! Just set `VITE_API_URL` when deploying:
 
-File: `app/src/lib/utils.ts` or wherever you make API calls
+### On Vercel:
+1. Go to your project settings
+2. Add Environment Variable:
+   - Name: `VITE_API_URL`
+   - Value: `https://your-backend-name.onrender.com/api`
 
-Change from:
-```javascript
-const API_URL = 'http://localhost:5000/api'
-```
-
-To:
-```javascript
-const API_URL = 'https://your-backend-url.onrender.com/api'
-```
+The frontend will automatically use this instead of localhost.
 
 ---
 
-## Step 9: Test Your Live Website
+## Step 8: Test Your Live Website
 
 1. Visit your domain (e.g., `iishfashion.com`)
 2. Register a new account
@@ -149,10 +127,9 @@ const API_URL = 'https://your-backend-url.onrender.com/api'
 
 ## Quick Checklist Before Going Live
 
-- [ ] Domain name purchased
-- [ ] Database hosted (not localhost)
-- [ ] Backend deployed with environment variables
-- [ ] Frontend deployed with correct API URL
+- [ ] Database hosted (not localhost) - Free from Aiven or PlanetScale
+- [ ] Backend deployed with environment variables on Render
+- [ ] Frontend deployed with correct API URL on Vercel
 - [ ] Paystack account set up with API keys
 - [ ] Test checkout works
 - [ ] HTTPS enabled (automatic with Vercel/Render)
